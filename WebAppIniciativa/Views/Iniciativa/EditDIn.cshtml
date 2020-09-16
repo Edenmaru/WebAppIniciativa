@@ -1,0 +1,176 @@
+﻿@using WebAppIniciativa.Models;
+
+@{
+    ViewBag.Title = "Detalle de la Inversión";
+    Layout = "~/Views/Shared/_comunLayout.cshtml";
+    DetalleInversion di = ViewBag.detinv;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    
+</head>
+<body>
+    <h2>Detalle de la Inversión</h2>
+
+    <table id="tablaIniciativa" class="table" cellpadding="1" cellspacing="0">
+        <tr>
+            <th>Mes</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+        </tr>
+
+        @foreach (DetalleInversion item in (List<DetalleInversion>)ViewBag.listaDetInv)
+        {
+            <tr>
+                @Html.Hidden("nco", di.nro_correlativo)
+                @Html.Hidden("nroItem", item.nro_item)
+                @Html.Hidden("fec_inv", item.fec_inv)
+                <td class="fec_inv"><span>@item.fec_inv.ToString("MMMM-yy")</span></td>
+                <td class="precio">
+                    <span>@item.precio</span>
+                    <input type="text" value="@item.precio" style="display:none" />
+                </td>
+                <td class="cantidad">
+                    <span>@item.cantidad</span>
+                    <input type="text" value="@item.precio" style="display:none" />
+                </td>
+                <td class="total"><span>@item.total</span></td>
+                <td>
+                    @Html.ActionLink("Editar","EditarDetalleInversion",new {nco=item.nro_correlativo,nro=item.nro_item, fec=item.fec_inv},new { @class = "boton" })
+                </td>
+
+            </tr>
+        }
+    </table><br />
+    <div class="form-group">
+        <div class="btngrupo">
+            @Html.ActionLink("Regresar", "CreateFIn", new { nroCo = di.nro_correlativo }, new { @class = "boton" })
+        </div>
+    </div>
+
+    
+
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+     <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+     <script type="text/javascript">
+         $(function () {
+             //Remove the dummy row if data present.
+             if ($("#tablaIniciativa tr").length > 2) {
+                 $("#tablaIniciativa tr:eq(1)").remove();
+             } else {
+                 var row = $("#tablaIniciativa tr:last-child");
+                 row.find(".Edit").hide();
+
+                 row.find("span").html('&nbsp;');
+             }
+         });
+
+         function AppendRow(row, customerId, name, country) {
+             //Bind CustomerId.
+             $(".CustomerId", row).find("span").html(customerId);
+
+             //Bind Name.
+             $(".Name", row).find("span").html(name);
+             $(".Name", row).find("input").val(name);
+
+             //Bind Country.
+             $(".Country", row).find("span").html(country);
+             $(".Country", row).find("input").val(country);
+
+             row.find(".Edit").show();
+             row.find(".Delete").show();
+             $("#tblCustomers").append(row);
+         };
+
+         //Edit event handler.
+         $("body").on("click", "#tablaIniciativa .Edit", function () {
+             var row = $(this).closest("tr");
+             $("td", row).each(function () {
+                 if ($(this).find("input").length > 0) {
+                     $(this).find("input").show();
+                     $(this).find("span").hide();
+                 }
+             });
+             row.find(".Update").show();
+             row.find(".Cancel").show();
+             $(this).hide();
+         });
+
+         //Update event handler.
+         $("body").on("click", "#tablaIniciativa .Update", function () {
+             var row = $(this).closest("tr");
+             $("td", row).each(function () {
+                 if ($(this).find("input").length > 0) {
+                     var span = $(this).find("span");
+                     var input = $(this).find("input");
+                     span.html(input.val());
+                     span.show();
+                     input.hide();
+                 }
+             });
+             row.find(".Edit").show();
+             row.find(".Cancel").hide();
+             $(this).hide();
+
+             var detalle = {};
+             detalle.fec_inv = row.find(".fec_inv").find("span").html();
+             detalle.precio = row.find(".precio").find("span").html();
+             detalle.cantidad = row.find(".cantidad").find("span").html();
+             $.ajax({
+                 type: "POST",
+                 url: "/Iniciativa/UpdateDetalle",
+                 data: detalle,
+                // contentType: "application/json; charset=utf-8",
+                 //dataType: "json"
+             });
+         });
+
+         //Cancel event handler.
+         $("body").on("click", "#tablaIniciativa .Cancel", function () {
+             var row = $(this).closest("tr");
+             $("td", row).each(function () {
+                 if ($(this).find("input").length > 0) {
+                     var span = $(this).find("span");
+                     var input = $(this).find("input");
+                     input.val(span.html());
+                     span.show();
+                     input.hide();
+                 }
+             });
+             row.find(".Edit").show();
+             row.find(".Update").hide();
+             $(this).hide();
+         });
+
+
+     </script>
+
+
+
+     <script>
+         var tble = document.getElementById("tabla");
+         var rowLen = tble.rows.length;
+         for (i = 0; i < rowLen; i++) {
+             var clls = tble.rows.item(i).cells;
+             var cellLen = clls.length;
+
+             for (var j = 0; j < cellLen; j++) {
+                 var cellVal = clls.item(j).innerHTML;
+
+             }
+         }
+     </script>-->
+
+    <script>
+    if ('@ViewBag.mensaje' !='') {
+        alert('@ViewBag.mensaje');
+    }
+    </script>
+
+</body>
+</html>

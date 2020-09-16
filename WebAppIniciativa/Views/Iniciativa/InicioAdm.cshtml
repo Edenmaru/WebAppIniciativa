@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "InicioAdm";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Inicio</title>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/skel.min.js"></script>
+    <script src="~/Scripts/skel-layers.min.js"></script>
+    <script src="~/Scripts/init.js"></script>
+
+    <link rel="stylesheet" href="~/Content/skel.css" />
+    <link rel="stylesheet" href="~/Content/style.css" />
+    <link rel="stylesheet" href="~/Content/style-xlarge.css" />
+
+</head>
+<body class="landing">
+
+    <section id="banner">
+
+        <h2>Proyecto Iniciativa</h2>
+        <div>
+            <a style="color:white; font-style:italic;" href="@Url.Action("ExportarExcel","Iniciativa")">Descargar en formato excel</a>
+        </div>
+
+    </section>
+    <section id="one" class="wrapper style1 align-center">
+        <div class="container">
+            <header>
+                <h2>Consectetur adipisicing elit</h2>
+                <p>Lorem ipsum dolor sit amet adipisicing elit. Delectus consequatur sed tempus.</p>
+            </header>
+            <div class="row 200%">
+                <section class="4u 12u$(small)">
+                    <i class="icon big rounded fa-clock-o"></i>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim quam consectetur quibusdam magni minus aut modi aliquid.</p>
+                </section>
+                <section class="4u 12u$(small)">
+                    <i class="icon big rounded fa-comments"></i>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ullam consequatur repellat debitis maxime molestiae.</p>
+                </section>
+                <section class="4u$ 12u$(small)">
+                    <i class="icon big rounded fa-user"></i>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eaque eveniet, nesciunt molestias. Ipsam, voluptate vero.</p>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <section class="4u 6u(medium) 12u$(small)">
+                    <h3>Lorem ipsum</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, cumque!</p>
+                    <ul class="alt">
+                        <li><a href="#">Lorem ipsum dolor sit amet.</a></li>
+                        <li><a href="#">Quod adipisci perferendis et itaque.</a></li>
+                        <li><a href="#">Itaque eveniet ullam, veritatis reiciendis?</a></li>
+                        <li><a href="#">Accusantium repellat accusamus a, soluta.</a></li>
+                    </ul>
+                </section>
+                <section class="4u 6u$(medium) 12u$(small)">
+                    <h3>Nostrum, repellat!</h3>
+                    <p>Tenetur voluptate exercitationem eius tempora! Obcaecati suscipit, soluta earum blanditiis.</p>
+                    <ul class="alt">
+                        <li><a href="#">Lorem ipsum dolor sit amet.</a></li>
+                        <li><a href="#">Id inventore, qui necessitatibus sunt.</a></li>
+                        <li><a href="#">Deleniti eum odit nostrum eveniet.</a></li>
+                        <li><a href="#">Illum consectetur quibusdam eos corporis.</a></li>
+                    </ul>
+                </section>
+                <section class="4u$ 12u$(medium) 12u$(small)">
+                    <h3>Contact Us</h3>
+                    <ul class="icons">
+                        <li><a href="#" class="icon rounded fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="#" class="icon rounded fa-facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="#" class="icon rounded fa-pinterest"><span class="label">Pinterest</span></a></li>
+                        <li><a href="#" class="icon rounded fa-google-plus"><span class="label">Google+</span></a></li>
+                        <li><a href="#" class="icon rounded fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                    </ul>
+                    <ul class="tabular">
+                        <li>
+                            <h3>Address</h3>
+                            1234 Somewhere Road<br>
+                            Nashville, TN 00000
+                        </li>
+                        <li>
+                            <h3>Mail</h3>
+                            <a href="#">someone@untitled.tld</a>
+                        </li>
+                        <li>
+                            <h3>Phone</h3>
+                            (000) 000-0000
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <ul class="copyright">
+                <li>&copy; Untitled. All rights reserved.</li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
+<script>
+    if ('@ViewBag.mensaje' != '') {
+        alert('@ViewBag.mensaje');
+    }
+</script>

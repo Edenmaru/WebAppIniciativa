@@ -1,0 +1,187 @@
+﻿@model IEnumerable<WebAppIniciativa.Models.SolicitudIniciativa>
+
+@{
+    ViewBag.Title = "VerSolicitudIniciativa";
+    Layout = "~/Views/Shared/_comunLayout.cshtml";
+}
+<header class="major">
+    <h2>Solicitudes de Iniciativa</h2>
+</header>
+
+
+
+
+<table class="alt ml-5 mr-5 mt-3 mb-2">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nroCorrelativo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.codEje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomEje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.codReq)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomReq)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecSol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomIni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.desIni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.objIni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.benIni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomImp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.desImp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecIni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecTer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomGer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomJef)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomCap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ubicacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomTip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.desTip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomAne)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.desAne)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nomBusCase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nroCorrelativo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.codEje)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomEje)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.codReq)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomReq)
+                </td>
+                <td>
+                    @Html.Label(item.fecSol.ToString("dd-MMM-yyyy"), new { @style = "width: max-content" })
+                    <!--Html.DisplayFor(modelItem => item.fecSol.ToString("MMM-yy"))-->
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomIni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.desIni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.objIni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.benIni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomImp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.desImp)
+                </td>
+                <td>
+                    @Html.Label(item.fecIni.ToString("MMM-yyyy"), new { @style = "width: max-content" })
+                  
+                </td>
+                <td>
+                    @Html.Label(item.fecTer.ToString("MMM-yyyy"), new { @style = "width: max-content" })
+                  
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomGer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomJef)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomCap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ubicacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomTip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.desTip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomAne)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.desAne)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomBusCase)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "CreateFIn", new { nroCo = item.nroCorrelativo })
+                    @Html.ActionLink("Eliminar", "EliminarSolicitud", new { nroCo=item.nroCorrelativo})
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
+
+<script>
+    if ('@ViewBag.mensaje' !='') {
+        alert('@ViewBag.mensaje');
+    }
+</script>

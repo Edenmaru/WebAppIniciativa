@@ -1,0 +1,380 @@
+﻿@using WebAppIniciativa.Models;
+@{
+    ViewBag.Title = "Glosario";
+    Layout = "~/Views/Shared/_comunLayout.cshtml";
+    int año = DateTime.Now.Year;
+}
+
+<header class="major">
+    <h2>Glosario de Términos</h2>
+</header>
+
+
+
+<div class="table-wrapper">
+    <h4>Ejes Estratégicos</h4>
+    <table class="alt ml-5 mr-5 mt-3 mb-2">
+        <thead>
+
+            <tr>
+                <th>Código</th>
+                <th>Ejes Estratégicos</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Eje item in (List<Eje>)ViewBag.listaEje)
+            {
+                <tr>
+                    <td>@item.codEje</td>
+                    <td>@item.nomEje</td>
+                    <td>@item.desEje</td>
+                </tr>
+            }
+        </tbody>
+    </table><br />
+    <h4>Requerimientos</h4>
+    <table class="alt ml-5 mr-5 mt-3 mb-2">
+        <thead>
+            <tr>
+                <th>Código del Requerimiento</th>
+                <th>Ejes Estratégicos</th>
+                <th>Requerimiento</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (RequerimientoxEje item in (List<RequerimientoxEje>)ViewBag.listaReq)
+            {
+                <tr>
+                    <td>@item.codReq</td>
+                    <td>@item.nomEje</td>
+                    <td>@item.nomReq</td>
+                    <td>@item.desReq</td>
+                </tr>
+            }
+        </tbody>
+       
+    </table><br />
+    <h4>Descripción de Iniciativa</h4>
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>
+                    Nombre de la  Iniciativa (max. 75 caracteres)
+                </td>
+                <td>
+                    Titulo de la iniciativa
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Descripción de la  Iniciativa (max. 150 caracteres)
+                </td>
+                <td>
+                    Explicar de forma concisa en qué consiste la iniciativa, en términos de lo que se piensa implementar o ejecutar (detallar a alto nivel el alcance, cantidad de sitios, cantidad de MW, cantidad de fibra, routers, etc.)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Objetivo de la iniciativa (max. 300 caracteres)
+                </td>
+                <td>
+                    Especificar de forma clara el objetivo de la iniciativa
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Beneficio de la iniciativa (max. 300 caracteres)
+                </td>
+                <td>
+                    Especificar de forma clara los beneficios de la iniciativa
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Impacto de no ejecutar la Iniciativa
+                </td>
+                <td>
+                    Especificar repercusiones de no implementar la iniciativa
+                </td>
+            </tr>
+        </tbody>
+        
+    </table><br />
+    <h4>Impacto de no Ejecutar la Iniciativa</h4>
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Escala</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>
+                    Critico - Ejecución Inmediata
+                </td>
+                <td>
+                    La iniciativa debe ejecutarse inmediatamente
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Alto - Ejecución @año
+                </td>
+                <td>
+                    La iniciativa debe ejecutarse en el @año
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Medio - Ejecución @(año + 1)
+                </td>
+                <td>
+                    La iniciativa debe ejecutarse en el @(año + 1)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Bajo - Ejecución @(año + 2)
+                </td>
+                <td>
+                    La iniciativa debe ejecutarse en el @(año + 2)
+                </td>
+            </tr>
+        </tbody>
+        
+    </table><br />
+    <h4>Fechas de la Iniciativa</h4>
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>
+                    MES DE INICIO
+                </td>
+                <td>
+                    Mes y año de inicio de ejecución de la iniciativa
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    MES DE TERMINO
+                </td>
+                <td>
+                    Mes y año de término de ejecución de ejecución
+                </td>
+            </tr>
+        </tbody>
+        
+
+    </table><br />
+    <h4>Interesados</h4>
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Detalle</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>
+                    GERENCIA SPONSOR
+                </td>
+                <td>
+                    Gerencia que financiará la iniciativa
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    JEFATURA SOLICITANTE
+                </td>
+                <td>
+                    Jefatura que solicita la iniciativa
+                </td>
+            </tr>
+        </tbody>
+       
+
+    </table><br />
+    <h4>Clasificación de Interesados</h4>
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Vicepresidencia</th>
+                <th>Gerencia</th>
+                <th>Jefatura</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Interesado item in (List<Interesado>)ViewBag.listaInt)
+            {
+                <tr>
+                    <td>VP REDES</td>
+                    <td>@item.nomGer</td>
+                    <td>@item.nomJef</td>
+                </tr>
+            }
+        </tbody>
+       
+    </table><br />
+    <h4>Capa de Red</h4>
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CapaDeRed item in (List<CapaDeRed>)ViewBag.listaCap)
+            {
+                <tr>
+                    <td>@item.nomCapa</td>
+                    <td>@item.desCapa</td>
+                </tr>
+            }
+        </tbody>
+        
+    </table><br />
+    <h4>Descripción del Tipo de Iniciativa</h4>
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Tipo de Iniciativa</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (TipoIniciativa item in (List<TipoIniciativa>)ViewBag.listaTipIni)
+            {
+                <tr>
+                    <td>@item.nomTipoIni</td>
+                    <td>@item.desTipoIni</td>
+                </tr>
+            }
+        </tbody>
+        
+    </table><br />
+    <h4>Descripción del Tipo de Inversión</h4>
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Tipo de Inversión</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (TipoInversion item in (List<TipoInversion>)ViewBag.listaTipoInv)
+            {
+                <tr>
+                    <td>@item.nomTipoInv</td>
+                    <td>@item.desTipoInv</td>
+                </tr>
+            }
+        </tbody>    
+
+       
+    </table><br />
+    <h4>Descripción de la Clasificación del Tipo de Inversión</h4>
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Tipo de Inversión</th>
+                <th>Familia</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (ClasificacionInversion item in (List<ClasificacionInversion>)ViewBag.listaCla)
+            {
+                <tr>
+                    <td>@item.nomTinv</td>
+                    <td>@item.nomFam</td>
+                    <td>@item.desFam</td>
+                </tr>
+            }
+        </tbody>
+        
+    </table><br />
+    <h4>Clasificación de Sitios</h4>
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Tipo de Sitio</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (TipoSitio item in (List<TipoSitio>)ViewBag.listaSit)
+            {
+                <tr>
+                    <td>@item.nomTipoSit</td>
+                    <td>@item.desTipoSit</td>
+                </tr>
+            }
+        </tbody>
+       
+    </table><br />
+    <h4>Clasificación de Estructuras</h4>
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Tipo de Estructura</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (TipoEstructura item in (List<TipoEstructura>)ViewBag.listaTes)
+            {
+                <tr>
+                    <td>@item.nomTipoEst</td>
+                    <td>@item.desTipoEst</td>
+                </tr>
+            }
+        </tbody>
+       
+    </table><br />
+    <h4>Descripción Anexos</h4>
+    <table class="alt">
+        <thead>
+            <tr>
+                <th>Anexos</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (Anexo item in (List<Anexo>)ViewBag.listaAne)
+            {
+                <tr>
+                    <td>@item.nomAne</td>
+                    <td>@item.desAne</td>
+                </tr>
+            }
+        </tbody>
+       
+    </table><br />
+</div>
+
+

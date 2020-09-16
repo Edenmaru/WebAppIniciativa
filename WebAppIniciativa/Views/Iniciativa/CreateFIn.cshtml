@@ -1,0 +1,161 @@
+﻿@model WebAppIniciativa.Models.DetalleIniciativa
+
+@using WebAppIniciativa.Models;
+
+@{
+    ViewBag.Title = "CreateFIn";
+    Layout = "~/Views/Shared/_comunLayout.cshtml";
+    SolicitudIniciativa si = (SolicitudIniciativa)ViewBag.solini;
+}
+
+<h2>Flujo de Inversión</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.Hidden("nroCorrelativo", si.nroCorrelativo)
+
+        <div class="form-group">
+            @Html.Label("INICIATIVA", htmlAttributes: new { @class = "control-label col-md-2" })
+            
+                @Html.TextBox("nombre", si.nomIni, new { @disabled = "disabled" })
+           
+        </div>
+
+        <div class="form-group">
+            @Html.Label("NRO. CORRELATIVO", htmlAttributes: new { @class = "control-label col-md-2" })
+            
+                @Html.TextBox("nro", si.nroCorrelativo, new { @disabled = "disabled" })
+           
+        </div>
+
+        <div class="form-group">
+            @Html.Label("FECHA DE INICIO", htmlAttributes: new { @class = "control-label col-md-2" })
+            
+                @Html.TextBox("fecini", si.fecIni.ToString("MMM-yy"), new { @disabled = "disabled" })
+           
+        </div>
+
+        <div class="form-group">
+            @Html.Label("FECHA DE TERMINO", htmlAttributes: new { @class = "control-label col-md-2" })
+          
+                @Html.TextBox("fecTer", si.fecTer.ToString("MMM-yy"), new { @disabled = "disabled" })
+           
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.codInv, htmlAttributes: new { @class = "control-label col-md-2" })
+           
+                @Html.DropDownList("codInv", (SelectList)ViewBag.tiin)
+           
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.codFam, htmlAttributes: new { @class = "control-label col-md-2" })
+         
+            <select id="codFam" name="codFam" class="form-control"></select>
+         
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.desItem, htmlAttributes: new { @class = "control-label col-md-2" })
+         
+                @Html.EditorFor(model => model.desItem, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.desItem, "", new { @class = "text-danger" })
+          
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.codSit, htmlAttributes: new { @class = "control-label col-md-2" })
+           
+                @Html.DropDownList("codSit", (SelectList)ViewBag.tisi)
+          
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.codEst, htmlAttributes: new { @class = "control-label col-md-2" })
+            
+                @Html.DropDownList("codEst", (SelectList)ViewBag.ties)
+           
+        </div>
+
+        <div class="form-group">
+            <div class="btngrupo">
+                <input type="submit" value="Añadir" class="btn btn-default" />
+            </div>
+            <div>
+                @Html.ActionLink("Enviar Solicitud", "EnviarSolicitud", new { cod=si.nroCorrelativo }, new { @class = "btn btn-primary" })
+            </div>
+        </div><br />
+        <table>
+
+            <tr>
+                <th>Tipo de Inversión</th>
+                <th>Familia</th>
+                <th>Descripción</th>
+                <th>Tipo de Sitio</th>
+                <th>Tipo de Estructura</th>
+            </tr>
+            @foreach (DetalleIniciativa item in (List<DetalleIniciativa>)ViewBag.listaDetIni)
+            {
+                <tr>
+                    <td>@item.nomInv</td>
+                    <td>@item.nomFam</td>
+                    <td>@item.desItem</td>
+                    <td>@item.nomSit</td>
+                    <td>@item.nomEst</td>
+                    <td>@Html.ActionLink("Detalle", "EditDIn", new { nroitem = item.nroItem }, new { @class = "btn btn-primary" })</td>
+                </tr>
+            }
+        </table><br />
+    </div>
+}
+
+<script>
+    if ('@ViewBag.mensaje' !='') {
+        alert('@ViewBag.mensaje');
+    }
+</script>
+
+<script>
+
+   
+    var cboTipo = document.getElementById("codInv");
+
+   
+    cboTipo.addEventListener("change", listaTipoInversion);
+
+   
+    listaTipoInversion();
+
+
+    function listaTipoInversion() {
+        fetch("@Url.Content("~/Iniciativa/Familia")" + "?cod=" + cboTipo.value)
+            .then(function (result) {
+
+                if (result.ok) {
+                    return result.json();
+                }
+            })
+            .then(function (data) {
+                console.log(data);
+                var cbo = document.getElementById("codFam");
+                cbo.innerHTML = "";
+                data.forEach(function (element) {
+                    let opt = document.createElement("option");
+                    opt.appendChild(document.createTextNode(element.nomFam));
+                    opt.value = element.codFam;
+
+                    cbo.appendChild(opt);
+                })
+            })
+    }
+</script>

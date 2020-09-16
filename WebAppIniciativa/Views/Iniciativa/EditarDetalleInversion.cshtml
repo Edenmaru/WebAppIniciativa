@@ -1,0 +1,64 @@
+﻿@model WebAppIniciativa.Models.DetalleInversion
+@using WebAppIniciativa.Models;
+@{
+    ViewBag.Title = "CAPEX";
+    Layout = "~/Views/Shared/_comunLayout.cshtml";
+    DetalleInversion di = ViewBag.detinv;
+    DateTime fecha = di.fec_inv.AddMonths(1);
+}
+
+<h2>CAPEX</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fec_inv, htmlAttributes: new { @class = "control-label col-md-2" })
+            
+                @Html.Hidden("nro_correlativo",di.nro_correlativo)
+                @Html.Hidden("nro_item",di.nro_item)
+                @Html.Hidden("fec_inv",di.fec_inv)
+                @Html.Label(Model.fec_inv.ToString("MMMM-yy"),new { @style= "text-align:left" })
+            
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.precio, htmlAttributes: new { @class = "control-label col-md-2" })
+           
+                @Html.EditorFor(model => model.precio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.precio, "", new { @class = "text-danger" })
+            
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
+           
+                @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cantidad, "", new { @class = "text-danger" })
+            
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="btngrupo">
+                <input type="submit" value="Actualizar" class="btn btn-default" />
+                @Html.ActionLink("Siguiente","EditarDetalleInversion",new { nco = di.nro_correlativo, nro =di.nro_item
+               , fec = fecha  }, new {@class = "btn btn-default" })
+                <br />
+                @Html.ActionLink("Ver flujo de inversion", "CreateFIn", new { nroCo = di.nro_correlativo }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Ver detalle de inversion", "EditDIn", new { nroitem = di.nro_item }, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    if ('@ViewBag.mensaje' !='') {
+        alert('@ViewBag.mensaje');
+    }
+</script>
