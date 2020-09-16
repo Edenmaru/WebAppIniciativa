@@ -652,6 +652,7 @@ namespace WebAppIniciativa.Controllers
         }
 
         //Generacion de codigo
+
         string autogenera()
         {
             SqlCommand cmd = new SqlCommand("select dbo.fx_autogenera()", cn);
