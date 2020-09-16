@@ -1186,6 +1186,8 @@ namespace WebAppIniciativa.Controllers
                 return RedirectToAction("Login");
             else
             {
+                
+                //Validacion del Modelo
                 if (!ModelState.IsValid)
                 {
                     ViewBag.mensaje = "Complete el formulario";
@@ -1197,6 +1199,8 @@ namespace WebAppIniciativa.Controllers
                 string mensaje;
                 cn.Open();
 
+
+                //Insercion de valores
                 SqlTransaction t = cn.BeginTransaction(IsolationLevel.Serializable);
                 try
                 {
